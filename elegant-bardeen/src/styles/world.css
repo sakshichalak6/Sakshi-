@@ -1,0 +1,453 @@
+/* ==========================================================================
+   Sakshi Chalak - Miniature Isometric 3D World Styles
+   ========================================================================== */
+
+.world-container {
+  width: 100%;
+  max-width: 1100px;
+  height: 640px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1400px;
+  perspective-origin: 50% 38%;
+  overflow: visible;
+  user-select: none;
+  margin: 0 auto;
+}
+
+/* Ambient Sky Elements (Drifting Clouds & Birds) */
+.sky-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.drifting-cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  border-radius: 50px;
+  box-shadow: 0 10px 25px rgba(185, 221, 245, 0.35);
+  animation: driftAcross linear infinite;
+}
+
+.cloud-1 {
+  width: 140px;
+  height: 48px;
+  top: 12%;
+  left: -150px;
+  animation-duration: 48s;
+  opacity: 0.8;
+}
+
+.cloud-2 {
+  width: 190px;
+  height: 60px;
+  top: 65%;
+  left: -200px;
+  animation-duration: 62s;
+  animation-delay: -20s;
+  opacity: 0.7;
+}
+
+.cloud-3 {
+  width: 110px;
+  height: 40px;
+  top: 30%;
+  right: -120px;
+  animation: driftAcrossReverse 55s linear infinite;
+  opacity: 0.65;
+}
+
+/* Floating Hot Air Balloon / Lemon Balloon */
+.floating-lemon-balloon {
+  position: absolute;
+  top: 8%;
+  right: 12%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: balloonBob 6s ease-in-out infinite;
+  z-index: 8;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.floating-lemon-balloon:hover {
+  transform: scale(1.1);
+}
+
+.balloon-body {
+  width: 52px;
+  height: 64px;
+  background: radial-gradient(circle at 35% 30%, #FFF4C2, var(--color-lemon-yellow) 80%);
+  border-radius: 50% 50% 45% 45%;
+  box-shadow: 0 8px 20px rgba(249, 231, 109, 0.45);
+  position: relative;
+}
+
+.balloon-body::after {
+  content: "🍋";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+}
+
+.balloon-basket {
+  width: 16px;
+  height: 14px;
+  background: #A06D42;
+  border-radius: 3px;
+  margin-top: 10px;
+  position: relative;
+}
+
+.balloon-basket::before, .balloon-basket::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  width: 1px;
+  height: 10px;
+  background: #734F30;
+}
+.balloon-basket::before { left: 2px; }
+.balloon-basket::after { right: 2px; }
+
+/* The 3D Isometric Island Platform */
+.island-stage {
+  width: 620px;
+  height: 620px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(58deg) rotateZ(-45deg) translateZ(0);
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Floating Island Ground Base */
+.island-ground {
+  position: absolute;
+  inset: 0;
+  border-radius: 64px;
+  background: linear-gradient(135deg, #A8C3A0 0%, #8EB685 100%);
+  box-shadow: 
+    0 15px 0 #7A9E72,
+    0 30px 0 #6C8E65,
+    0 45px 0 #5E7E57,
+    0 60px 0 #506D4A,
+    0 75px 0 #425D3C,
+    0 90px 15px rgba(53, 92, 75, 0.3),
+    0 110px 45px rgba(53, 92, 75, 0.18),
+    0 140px 90px rgba(37, 43, 40, 0.22);
+  transform-style: preserve-3d;
+}
+
+/* Ground Texture & Details */
+.island-terrain-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 64px;
+  pointer-events: none;
+}
+
+/* Cobblestone paths, lake & decorative greenery */
+.island-lake {
+  position: absolute;
+  top: 55%;
+  left: 54%;
+  width: 160px;
+  height: 130px;
+  background: radial-gradient(circle at 40% 40%, #D8EEFD 0%, #B9DDF5 70%, #90C7EF 100%);
+  border-radius: 55% 45% 60% 40% / 40% 60% 40% 60%;
+  box-shadow: inset 0 3px 10px rgba(53, 92, 75, 0.2), 0 2px 6px rgba(185, 221, 245, 0.5);
+  animation: waterRipple 5s ease-in-out infinite alternate;
+}
+
+.island-lake::after {
+  content: "";
+  position: absolute;
+  top: 25%;
+  left: 20%;
+  width: 18px;
+  height: 14px;
+  background: #A8C3A0;
+  border-radius: 50%;
+  box-shadow: 25px 20px 0 -2px #A8C3A0, 45px 5px 0 -3px #A8C3A0;
+}
+
+/* Central Stone Plaza */
+.central-plaza {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 170px;
+  height: 170px;
+  background: radial-gradient(circle, #FFFDF5 0%, #FFF4C2 60%, #EAD89B 100%);
+  border-radius: 50%;
+  border: 4px dashed rgba(53, 92, 75, 0.25);
+  box-shadow: 0 4px 12px rgba(53, 92, 75, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.plaza-compass {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid rgba(53, 92, 75, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-forest-green);
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   Interactive Landmark Buildings (Isometric 3D)
+   ========================================================================== */
+
+.landmark-node {
+  position: absolute;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform var(--transition-normal), filter var(--transition-normal);
+  outline: none;
+}
+
+.landmark-node:hover {
+  transform: translateZ(16px);
+  filter: drop-shadow(0 15px 15px rgba(249, 231, 109, 0.6));
+}
+
+.landmark-node:focus-visible {
+  filter: drop-shadow(0 0 16px var(--color-lemon-yellow));
+}
+
+.landmark-node.active-selected {
+  transform: translateZ(24px) scale(1.05);
+  filter: drop-shadow(0 0 25px var(--color-lemon-bright));
+}
+
+/* Billboard-style Floating Marker (always faces the camera) */
+.landmark-billboard-badge {
+  position: absolute;
+  top: -38px;
+  left: 50%;
+  transform: translate(-50%, 0) rotateZ(45deg) rotateX(-58deg);
+  transform-origin: bottom center;
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-subtle-border);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(37, 43, 40, 0.15);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-dark-text);
+  pointer-events: none;
+  transition: all var(--transition-fast);
+}
+
+.landmark-node:hover .landmark-billboard-badge {
+  background: var(--color-lemon-yellow);
+  color: var(--color-forest-green);
+  transform: translate(-50%, -6px) rotateZ(45deg) rotateX(-58deg) scale(1.1);
+  box-shadow: var(--shadow-lemon-glow);
+}
+
+.landmark-billboard-badge .badge-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* Specific Building Locations & Layouts */
+
+/* 1. Developer's Desk */
+.node-workspace {
+  top: 32%;
+  left: 20%;
+  width: 80px;
+  height: 70px;
+}
+
+/* 2. Web Development District */
+.node-webdev {
+  top: 16%;
+  left: 55%;
+  width: 90px;
+  height: 80px;
+}
+
+/* 3. Cloud Computing Tower */
+.node-cloud {
+  top: 10%;
+  left: 22%;
+  width: 85px;
+  height: 85px;
+}
+
+/* 4. IoT Innovation Lab */
+.node-iot {
+  top: 36%;
+  left: 68%;
+  width: 90px;
+  height: 80px;
+}
+
+/* 5. The Lemon Studio */
+.node-lemon-studio {
+  top: 60%;
+  left: 22%;
+  width: 85px;
+  height: 85px;
+}
+
+/* 6. The Project Plaza */
+.node-projects {
+  top: 42%;
+  left: 42%;
+  width: 95px;
+  height: 85px;
+}
+
+/* 7. The Contact Lighthouse */
+.node-contact {
+  top: 66%;
+  left: 65%;
+  width: 75px;
+  height: 75px;
+}
+
+/* ==========================================================================
+   Building Visual Models (CSS / SVG 3D Architecture)
+   ========================================================================== */
+
+.building-isometric-model {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+/* Floating Code / Paint Particles */
+.floating-particle {
+  position: absolute;
+  pointer-events: none;
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 12px;
+  animation: floatParticle 3s ease-in-out infinite alternate;
+}
+
+/* Streetlights & Decorative Trees */
+.iso-tree {
+  position: absolute;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.iso-tree.sway {
+  animation: treeSway 4s ease-in-out infinite alternate;
+}
+
+/* Streetlamp Halos */
+.streetlamp-glow {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(249, 231, 109, 0.45) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: lampPulse 3s ease-in-out infinite alternate;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes driftAcross {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(1400px); }
+}
+
+@keyframes driftAcrossReverse {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-1400px); }
+}
+
+@keyframes balloonBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes waterRipple {
+  0% { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1.03) rotate(1deg); }
+}
+
+@keyframes floatParticle {
+  0% { transform: translateY(0) scale(1); opacity: 0.7; }
+  100% { transform: translateY(-8px) scale(1.15); opacity: 1; }
+}
+
+@keyframes treeSway {
+  0% { transform: rotate(0deg) skewX(0deg); }
+  100% { transform: rotate(1.5deg) skewX(1deg); }
+}
+
+@keyframes lampPulse {
+  0% { opacity: 0.5; transform: scale(0.9); }
+  100% { opacity: 0.85; transform: scale(1.1); }
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .world-container {
+    height: 520px;
+  }
+  .island-stage {
+    width: 480px;
+    height: 480px;
+  }
+  .landmark-billboard-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .world-container {
+    height: 420px;
+  }
+  .island-stage {
+    width: 360px;
+    height: 360px;
+  }
+  .landmark-billboard-badge {
+    font-size: 9px;
+    padding: 2px 6px;
+    top: -28px;
+  }
+}

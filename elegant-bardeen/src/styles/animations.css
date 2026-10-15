@@ -1,0 +1,126 @@
+/* ==========================================================================
+   animations.css - Keyframes and Motion Design for Sakshi's World
+   ========================================================================== */
+
+@keyframes floatSubtle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(2deg);
+  }
+}
+
+@keyframes driftCloudSlow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(1400px);
+  }
+}
+
+@keyframes driftCloudReverse {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-1400px);
+  }
+}
+
+@keyframes balloonFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes waterRipples {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    transform: scale(1.03) rotate(1deg);
+  }
+}
+
+@keyframes lampGlowPulse {
+  0% {
+    opacity: 0.45;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 0.85;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes lighthouseBeamSpin {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.7;
+  }
+}
+
+@keyframes signalPacketHop {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-6px) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes treeBreeze {
+  0% {
+    transform: rotate(0deg) skewX(0deg);
+  }
+  100% {
+    transform: rotate(1.8deg) skewX(1deg);
+  }
+}
+
+@keyframes hintBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes fadeInScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

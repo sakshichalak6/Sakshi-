@@ -1,0 +1,32 @@
+{
+  "name": "sakshi-world-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "The Developer's Little World — An Interactive 3D Developer Portfolio for Sakshi Chalak",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.0"
+  },
+  "keywords": [
+    "portfolio",
+    "3d",
+    "isometric",
+    "sakshi-chalak",
+    "entc",
+    "iot",
+    "cloud",
+    "lemon-studio"
+  ],
+  "author": "Sakshi Chalak",
+  "license": "MIT"
+}
